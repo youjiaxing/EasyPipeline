@@ -1,0 +1,15 @@
+{
+    "name": "yjx/easy-pipeline",
+    "description": "An easy pipeline, learn Laravel.",
+    "type": "library",
+    "require": {
+        "psr/container": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "youjiaxing",
+            "email": "287009007@qq.com"
+        }
+    ]
+}
