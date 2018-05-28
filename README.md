@@ -1,6 +1,8 @@
 # EasyPipeline
 一个简单管道的实现, 参考Laravel的管道实现.
 
+本项目创建的目的在于个人理解管道设计模式, 同时想要有一个不依赖于任何框架的管道实现.
+
 # 使用
 `(new EasyPipeline\Pipeline())->send($passable)->through($pipes)->then($lastPipe);`
 
