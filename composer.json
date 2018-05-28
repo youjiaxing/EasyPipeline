@@ -5,6 +5,11 @@
     "require": {
         "psr/container": "^1.0"
     },
+    "autoload": {
+        "psr-4": {
+            "EasyPipeline\\": "src/"
+        }
+    },
     "license": "MIT",
     "authors": [
         {
