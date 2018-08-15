@@ -75,6 +75,16 @@ class Pipeline
         return $this;
     }
 
+
+
+
+    function slice($nextPipe, $pipe)
+    {
+        return function ($pass) use ($nextPipe, $pipe) {
+            return $pipe($pass, $nextPipe);
+        };
+    }
+
     /**
      * 传入一个目标闭包, 开启管道
      *
@@ -140,9 +150,16 @@ class Pipeline
             $params = [$passable, $nextPipe];
         }
 
-        return method_exists($middleware, $this->method)
-            ? call_user_func_array([$middleware, $this->method], $params)
-            : call_user_func_array($middleware, $params);
+        // 若容器支持call方法, 则直接调用
+        // public function call($function, $parameters=[], $shared=false)
+        $callable = method_exists($middleware, $this->method)
+            ? [$middleware, $this->method] : $middleware;
+
+        if (method_exists($this->getContainer(), 'call')) {
+            $this->getContainer()->call($callable, $params);
+        } else {
+            call_user_func_array($callable, $params);
+        }
     }
 
     protected function getContainer()
